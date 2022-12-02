@@ -9,7 +9,7 @@
 version: '3'
 services:
   nagios:
-    containername: dissnagios
+    container_name: dissnagios
     image: jasonrivers/nagios:latest
     restart: unless-stopped
     ports:
