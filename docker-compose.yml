@@ -9,13 +9,19 @@
 version: '3'
 services:
   nagios:
+    containername: dissnagios
     image: jasonrivers/nagios:latest
+    restart: unless-stopped
+    ports:
+    -  80:80
+    environment:
+    - NAGIOS_TIMEZONE="Europe/Rome"
     volumes:
-    - nagiosetc:/opt/nagios/etc
-    - nagiosvar:/opt/nagios/var
-    - customplugins:/opt/Custom-Nagios-Plugins
-    - nagiosgraphvar:/opt/nagiosgraph/var
-    - nagiosgraphetc:/opt/nagiosgraph/etc
+    - ./volumes/nagiosetc:/opt/nagios/etc
+    - ./volumes/nagiosvar:/opt/nagios/var
+    - ./volumes/customplugins:/opt/Custom-Nagios-Plugins
+    - ./volumes/nagiosgraphvar:/opt/nagiosgraph/var
+    - ./volumes/nagiosgraphetc:/opt/nagiosgraph/etc
 
 volumes:
     nagiosetc:
